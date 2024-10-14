@@ -1,19 +1,7 @@
 @php
-use App\Models\newtoll;
-
-$newtoll = newtoll::with(['relatedtoll'])->where('axel_no', $toll->axeid1)->get();
+    use Carbon\Carbon;
 @endphp
-
-<!-- @foreach ($newtoll as $form)
-    @if ($form->relatedtoll->isNotEmpty())
-        @foreach ($form->relatedtoll as $relatedToll)
-            <h1>{{ $relatedToll->time }}&nbsp;&nbsp;</h1> 
-        @endforeach
-    @else
-        <h1>No related tolls found.</h1>
-    @endif
-@endforeach -->
-
+                      
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,11 +163,31 @@ font-size: 7px;
         font-size: 0.8em; /* Optional: you can adjust the size of "LTE" if needed */
         text-transform: uppercase; /* Ensures "LTE" is uppercase */
     }
-  
+  .sticky-header {
+        position: sticky; /* Makes the div sticky */
+        top: -13px; /* Positions it at the top of the viewport */
+        background-color: white; /* Change background color if necessary */
+        z-index: 1000; /* Ensures it stays above other content */
+        margin: -4px;
+        height:117px;
+        
+    }
+   .full-width-border {
+    width: 100%; /* Makes sure the border spans the full width of the device */
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 0px;
+}
+
+.content {
+    max-width: 1200px; /* Set the maximum width of your content */
+    margin: 0 auto; /* Centers the content horizontally */
+    padding: 0 5px; /* Optional: Add padding for spacing inside the content */
+}
+
     </style>
 </head>
 <body>
-    
+
 <div class="mobile-screen">
     <!-- Top bar -->
   
@@ -211,74 +219,70 @@ font-size: 7px;
 
 <span id="random-percentage"></span>
 </div>
-<!-- add -->
-<div class="content">
-          <div class="container">
+
+    <!-- Content area -->
+    <div class="content">
+        <div class="container">
            
 
-        <div class="icons-row" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="sticky-header icons-row" style="display: flex; justify-content: space-between; align-items: center;">
             <!-- Left icon -->
-            <i class="fa-solid fa-arrow-left" style="font-size: 24px;"></i>
+            
+            <i class="fa-solid fa-arrow-left" style="font-size: 24px;margin:1px;"></i>
             
             <!-- Heading in the center -->
-            <h2 style="margin: 0;">FASTag For {{$toll->carno ?? 'N/A' }}</h2>
+            <h2 style="margin:1px;">FASTag For {{$toll->carno ?? 'N/A' }}</h2>
             
             <!-- Right icon -->
-            <i class="fa-solid fa-ellipsis-vertical" style="font-size: 24px;"></i>
+            <i class="fa-solid fa-ellipsis-vertical" style="font-size: 24px;margin:1px;"></i>
         </div>
         <div class="row">
-            <!-- start main loop -->
-            @php
-            $intime = new DateTime($toll->intime); // Assuming $toll->intime is your start time
-            $debitTime = clone $intime;
-            @endphp
-            <!-- chnages -->
-             
-@foreach ($newtoll as $form)
-<!-- change -->
-@php
-        $previousDebitTime = \Carbon\Carbon::parse($intime); 
-        // Initialize with the first record's time
-    @endphp
-    <!-- change -->
-    @foreach ($form->relatedtoll as $index => $relatedToll) 
-    <!-- for reverse -->
+       
+ 
+        @foreach ($processedTollData as $tollData)
+    @if ($tollData['showDate'])
+       <h5 style="background-color: #ccc; padding: 5px;">{{ $tollData['date'] }}</h5>
+
+    @else
         <div class="col-5">
-            <div class="info" style="position: relative; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #ccc; padding-bottom: 20px;">
-                <div class="image-column" style="flex: 1; max-width: 50px;">
-                    <img src="{{ asset('upload/idfc.jpg') }}" alt="IDFC Image" class="img-responsive" style="max-width: 100%; height: auto;">
-                </div>
+            <div class="info full-width-border" style="position: relative; display: flex; align-items: center; justify-content: space-between;">
+<div class="image-column" style="flex: 1; max-width: 50px; padding-top: 0;margin-top:0;">
+    <img src="{{ asset('upload/idfc.jpg') }}" alt="IDFC Image" class="img-responsive" style="max-width: 103%; height: 2rem; width: 89%; margin-top:-51px;padding-top: 0;padding-left:7px">
+</div>
+
 
                 <div class="details-column" style="flex: 3; padding-left: 15px;">
-                    <h3 style="margin: 0; padding-top: 20px">FASTag Swipe</h3>
-                    <p><strong>{{ $relatedToll->tollname ?? 'N/A' }}</strong><strong>&nbsp;Toll plaza</strong></p>
-                    <p id="debit-time-{{ $relatedToll->id }}">
-                        <span>Debited at</span> 
-                        <span>{{ $previousDebitTime->format('h:i A') }}</span> <!-- Display the calculated debit time -->
-                       
+                    <h3 style="margin: 0; padding-top: 0px;margin-top:27px;">FASTag &nbsp;Swipe</h3>
+<h5 style="margin-top: 8px; padding-top: 0;margin-bottom: 8px;">
+    <strong>{{ $tollData['tollname'] }}</strong><strong>&nbsp;Toll plaza</strong>
+</h5>
 
-                    </p>
+               <h6 style="font-weight: normal; text-decoration: none;padding-bottom:0px;margin-bottom:14px;margin-top: 16px;" id="debit-time-{{ $tollData['relatedTollId'] }}">
+    <span>Debited at</span> 
+    <span id="debit-time-value-{{ $tollData['relatedTollId'] }}">
+        {{ $tollData['formattedDebitTime'] }}               
+    </span>
+</h6>
+
                 </div>
 
                 <div class="price-column" style="flex: 1; text-align: right;">
-                    <p style="margin: 0; font-weight: bold; color: red;"><strong>- &nbsp;</strong><strong>₹</strong> {{ $relatedToll->price ?? 'N/A' }}</p>
+                    <p style="margin: 0; font-weight: bold; color: red;">
+                        <strong>- &nbsp;</strong><strong>₹</strong> 
+                         {{ intval($tollData['price']) }}
+                    </p>
                 </div>
             </div>
         </div>
-        @php
-            // Get the number of hours to add from $relatedToll->time
-            $hoursToAdd = $relatedToll->time;
-           // Ensure this is an integer
-            // Add the specified time to the previous debit time for the next iteration
-            $previousDebitTime->addHours($hoursToAdd); 
-        @endphp
-    @endforeach
+    @endif
 @endforeach
 
 
-        
-          <!-- end main loop -->
-@if($toll->recharge)
+
+
+
+
+ @if($toll->recharge)
         <div class="info" style="position: relative; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #ccc;padding-bottom:20px;">
             <div class="image-column" style="flex: 1; max-width: 50px;">
                 <img src="{{ asset('upload/idfc.jpg') }}" alt="IDFC Image" class="img-responsive" style="max-width: 100%; height: auto;">
@@ -288,8 +292,13 @@ font-size: 7px;
                 <h3 style="margin: 0;padding-top:20px">FASTag Recharge</h3>
                 <p><strong>{{ $toll->carno ?? 'N/A' }}</strong><strong>&nbsp;</strong></p>
                 <p id="debit-time-{{ $toll->id }}">
-                    <span>credited at</span> 
-                    <span id="debit-time-value-{{ $toll->created_at->format('d-m-Y') }}">{{ $toll->created_at->format('d-m-Y') }}</span>
+                    <span>Credited at</span> 
+                    <span id="debit-time-value-{{ now()->format('d-m-Y') }}">
+                   <!--{{ \Carbon\Carbon::parse($toll->intime)->subMinutes(5)->format('h:i A') }}-->
+                  {{ \Carbon\Carbon::parse($toll->intime)->format('h:i A') }}
+
+</span>
+
                 </p>
             </div>
 
@@ -307,7 +316,9 @@ font-size: 7px;
 
 </div>
 
- </div>
+
+
+        </div>
     </div>
 
     <!-- Bottom button bar -->
@@ -327,10 +338,9 @@ font-size: 7px;
 </div>
 
 </div>
-
 <script>
-    // battery  function start
-     function generateRandomPercentage() {
+    // Function to generate a random percentage between 0 and 100 and select the appropriate battery icon
+    function generateRandomPercentage() {
         const percentage = Math.floor(Math.random() * 101); // Generate random percentage between 0 and 100
         let batteryIcon;
 
@@ -350,10 +360,8 @@ font-size: 7px;
         // Return the percentage with the appropriate battery icon
         return percentage + '% <i class="fa-solid ' + batteryIcon + '"></i>';
     }
-    // battery function end
-    // Function to generate a random time (HH:MM)
 
-    // header time
+    // Function to generate a random time (HH:MM)
     function generateRandomTime() {
         let hours = Math.floor(Math.random() * 24);  // Random hour between 0 and 23
         let minutes = Math.floor(Math.random() * 60); // Random minute between 0 and 59
@@ -361,17 +369,20 @@ font-size: 7px;
         // Format hours and minutes to always show two digits (e.g., 09:05)
         return ('0' + hours).slice(-2) + ':' + ('0' + minutes).slice(-2);
     }
+
+    // Assign the generated random percentage and time to the respective spans
     document.getElementById('random-percentage').innerHTML = generateRandomPercentage(); // Use innerHTML for the percentage to include the icon
     document.getElementById('random-time').innerText = generateRandomTime(); // innerText for time (no HTML needed)
-//    end header time
-// header random value
-function generateRandomValue() {
+</script>
+<script>
+    // Function to generate a random value between 0.1 and 9.9
+    function generateRandomValue() {
         return (Math.random() * 9.9).toFixed(1); // Generates a random number between 0.1 and 9.9 with one decimal place
     }
 
     // Set the generated random value to the span
     document.getElementById('random-vo').innerText = generateRandomValue(); // Set the random value (e.g., 3.5)
-// header random value end
 </script>
+
 </body>
 </html>
