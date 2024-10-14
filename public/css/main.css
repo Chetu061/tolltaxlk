@@ -1,0 +1,534 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;500;700&family=Poppins:wght@300;400;500&display=swap');
+
+:root {
+    --lg-font: 'Kaisei Tokumin', serif;
+    --sm-font: 'Poppins', sans-serif;
+    --pink: #119f26;
+}
+
+body {
+    font-family: var(--sm-font);
+}
+
+
+/* button */
+
+.bg-primary {
+    background-color: var(--pink) !important;
+}
+
+.btn:not(.nav-btns button) {
+    background-color: #fff;
+    color: rgb(85, 85, 85);
+    padding: 10px 28px;
+    border-radius: 25px;
+    border: 1px solid rgb(85, 85, 85);
+}
+
+.btn:not(.nav-btns button a) {
+    color: black;
+    /* Default link color */
+    text-decoration: none;
+    /* No underline */
+}
+
+a:visited {
+    color: black;
+    /* Color after the link is visited */
+}
+
+.btn:not(.nav-btns button):hover {
+    background-color: var(--pink);
+    color: #fff;
+    border-color: var(--pink);
+}
+
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler:active {
+    border: none;
+}
+
+
+/* text color */
+
+.text-primary {
+    color: var(--pink) !important;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    /* Example of changing h5 font */
+    font-size: 22px;
+}
+
+
+/* navbar */
+
+
+/* .navbar {
+   -webkit-box-shadow: 0 3px 9px 3px rgba(0, 0, 0, 0.1);
+   box-shadow: 0 3px 9px 3px rgba(0, 0, 0, 0.1);
+   transition: background-color 0.3s, box-shadow 0.3s;
+} */
+
+.navbar-nav .nav-link {
+    color: #000 !important;
+}
+
+
+/* .navbar-brand img {
+width: 30px;
+} */
+
+
+/* .navbar-brand span {
+   letter-spacing: 2px;
+   font-family: var(--lg-font);
+   font-weight: bold;
+} */
+
+.nav-link:hover {
+    color: var(--pink) !important;
+}
+
+
+/* .nav-item {
+   border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+} */
+
+.navbar {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: #e9ecef;
+}
+
+.navbar-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.nav-link {
+    color: #212529;
+    transition: color 0.3s ease;
+    /* font-family: var(--lg-font); */
+    font-family: 'Georgia', serif;
+    /* Example of changing h5 font */
+    /* font-weight: bold; */
+    font-size: 20px;
+}
+
+
+/* .navbar-nav .nav-link.active,
+.border-red {
+border-bottom: 3px solid #b71c1c
+}
+
+.navbar-nav .nav-link:hover {
+border-bottom: 3px solid #b71c1c
+} */
+
+
+/* .nav-link:hover {
+   color: #007bff;
+} */
+
+.navbar-nav .nav-item {
+    margin: 0 10px;
+}
+
+.btn {
+    background-color: transparent;
+    border: none;
+}
+
+.btn i {
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: #e2e6ea;
+    border-radius: 50%;
+}
+
+
+/* header */
+#header {
+    height: 100vh;
+    /* Full height for the header */
+    overflow: hidden;
+    /* Ensure nothing overflows */
+}
+
+.carousel-inner {
+    height: 100%;
+    /* Full height for the carousel items */
+}
+
+.carousel-item {
+    height: 100%;
+    /* Ensure each item occupies full height */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    height: 100%;
+    /* Full height container for centering content */
+}
+
+h1 {
+    font-size: 60px;
+    font-family: var(--lg-font);
+}
+
+.carousel-item .btn {
+    border-color: #fff !important;
+    color: #fff !important;
+}
+
+.carousel-item .btn:hover {
+    border-color: var(--pink) !important;
+    color: var(--pink) !important;
+}
+
+
+
+
+/* title */
+
+.title h2::before {
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 50px;
+    background-color: var(--pink);
+    left: -20px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.title h2 {
+    font-family: 'Georgia', serif;
+    /* Example of changing h5 font */
+    font-weight: bold;
+}
+
+
+/* collection */
+
+.active-filter-btn {
+    background-color: var(--pink) !important;
+    color: #fff !important;
+    border-color: var(--pink) !important;
+}
+
+.filter-button-group .btn:hover {
+    color: #fff !important;
+}
+
+.collection-img span {
+    top: 20px;
+    right: 20px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+
+
+/* special */
+
+.special-img span {
+    top: 20px;
+    right: 20px;
+}
+
+.special-list .btn {
+    padding: 8px 20px !important;
+}
+
+.special-img img {
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.special-img:hover img {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+
+/* offers */
+
+#offers {
+    background: url(../images/offer1.jpg) center/cover no-repeat;
+}
+
+#offers .row {
+    min-height: 60vh;
+}
+
+.offers-content span {
+    font-size: 28px;
+}
+
+.offers-content h2 {
+    font-size: 60px;
+    font-family: var(--lg-font);
+}
+
+.offers-content .btn {
+    border-color: transparent !important;
+}
+
+
+/* about */
+
+#about {
+    background-color: rgba(179, 179, 179, 0.05);
+}
+
+
+/* newsletter */
+
+#newsletter {
+    background-color: rgba(179, 179, 179, 0.05);
+}
+
+#newsletter p {
+    max-width: 600px;
+}
+
+#newsletter .input-group {
+    max-width: 500px;
+}
+
+#newsletter .form-control {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+#newsletter .btn {
+    background-color: var(--pink);
+    color: #fff;
+    border-color: var(--pink);
+}
+
+#newsletter .btn:hover {
+    background-color: #000;
+    border-color: #000;
+}
+
+
+/* Login */
+
+
+/* Background color for the section */
+
+.bg-light {
+    background-color: #f7f7f7;
+}
+
+
+/* Card styling */
+
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+
+/* Form styling */
+
+.form-control-lg {
+    height: 50px;
+    font-size: 1.1rem;
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.form-check-label {
+    font-size: 0.9rem;
+}
+
+
+/* Button styling */
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+
+/* Links styling */
+
+a {
+    text-decoration: none;
+}
+
+
+/* Adjustments for responsive design */
+
+@media (max-width: 576px) {
+    .card {
+        border-radius: 8px;
+    }
+}
+
+
+/* Style for the search popup */
+
+.search-popup {
+    display: none;
+    /* Initially hidden */
+    position: fixed;
+    top: 80px;
+    /* Distance from the bottom */
+    right: 20px;
+    /* Distance from the right */
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    /* background: rgba(0, 0, 0, 0.5); */
+    background-color: transparent;
+    /* Semi-transparent background */
+    z-index: 1000;
+    /* Ensure it is above other content */
+}
+
+.search-popup-content {
+    /* background: gray; */
+    background-color: transparent;
+    padding: 8px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    width: 250px;
+    /* Adjust width as needed */
+}
+
+.search-popup-content input {
+    width: calc(100% - 40px);
+    /* Full width minus padding */
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.search-popup-content .btn-close {
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    background-color: white;
+    width: 20px;
+    /* Adjust the width */
+    height: 20px;
+    /* Adjust the height */
+    border-radius: 50%;
+    /* Optional: Makes the button circular */
+    font-size: 14px;
+    /* Adjust the font size if text is used */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    /* Remove any default padding */
+    line-height: 0;
+    /* Remove any default line height */
+    cursor: pointer;
+    /* Change cursor to pointer to indicate it’s clickable */
+}
+
+.search-popup-content .form-control {
+    padding: 5px;
+    width: 200px;
+}
+
+
+/* footer */
+
+
+/* footer .brand {
+    font-family: var(--lg-font);
+    letter-spacing: 2px;
+}
+
+footer a {
+    -webkit-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--pink)!important;
+} */
+
+footer {
+    font-family: 'Arial', sans-serif;
+    /* Change this to your desired font */
+    color: #ffffff;
+    /* Default text color */
+}
+
+footer .brand {
+    font-family: var(--lg-font);
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    /* Adjust size as needed */
+}
+
+footer h5 {
+    font-family: 'Georgia', serif;
+    /* Example of changing h5 font */
+    font-weight: bold;
+    /* Make h5 headings bold */
+}
+
+footer p,
+footer .text-muted,
+footer a {
+    font-family: 'Verdana', sans-serif;
+    /* Change this to your desired font */
+}
+
+footer a {
+    -webkit-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--pink) !important;
+}
+
+
+/* media queries */
+
+@media(min-width: 758px) {
+    .nav-item {
+        border-bottom: none;
+    }
+}
